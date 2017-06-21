@@ -1,14 +1,12 @@
-package com.prueba.modelo;
+package com.jpa.modelo;
 
 import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
 @Entity
-@Table(name = "Alumno")
 public class Alumno implements Serializable {
 
     @Id
@@ -68,7 +66,7 @@ public class Alumno implements Serializable {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 29 * hash + Objects.hashCode(this.dni);
+        hash = 89 * hash + Objects.hashCode(this.dni);
         return hash;
     }
 
@@ -90,6 +88,8 @@ public class Alumno implements Serializable {
         return true;
     }
 
+    
+    
     @Override
     public String toString() {
         return "Alumno{" + "dni=" + dni + ", nombre=" + nombre + ", apellidos=" + apellidos + ", edad=" + edad + '}';
