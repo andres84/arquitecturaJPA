@@ -1,7 +1,8 @@
 package com.jpa.vista;
 
-
 import com.jpa.modelo.Empleado;
+import java.util.GregorianCalendar;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -29,11 +30,20 @@ public class app_insertar {
         EntityTransaction interface que genera una abstraccion sobre el concepto en general de transaccion
         a nivel de base de datos
          */
-       
-        //Empleado empleado = new Empleado(1, "andres", "fragozo", );
+        Empleado empleado = new Empleado(1, "andres", "fragozo", new GregorianCalendar(1984, 06, 29).getTime());
+
+        em.getTransaction().begin();
+
+        em.persist(empleado);
+
+        em.getTransaction().commit();
+
+        List<Empleado> empleados = (List<Empleado>) em.createQuery("FROM Empleado").getResultList();
+
+        System.out.println("En la base de datos hay " + empleados.size() + " empleados.");
         
-       em.getTransaction().begin();
-        
+        em.close();
+
     }
 
 }
