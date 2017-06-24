@@ -3,7 +3,9 @@ package com.jpa.modelo;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 
 @Entity
@@ -19,6 +21,9 @@ public class Direccion implements Serializable{
     private String provincia;
     @Column
     private String pais;
+    
+    @OneToOne(mappedBy = "direccion", fetch = FetchType.LAZY)
+    private Empleado empleado;
 
     public Direccion() {
     }
@@ -71,6 +76,16 @@ public class Direccion implements Serializable{
         this.pais = pais;
     }
 
+    public Empleado getEmpleado() {
+        return empleado;
+    }
+
+    public void setEmpleado(Empleado empleado) {
+        this.empleado = empleado;
+    }
+
+    
+    
     @Override
     public int hashCode() {
         int hash = 7;
@@ -98,7 +113,9 @@ public class Direccion implements Serializable{
 
     @Override
     public String toString() {
-        return "Direccion{" + "id_direccion=" + id_direccion + ", direccion=" + direccion + ", localidad=" + localidad + ", provincia=" + provincia + ", pais=" + pais + '}';
+        return "Direccion{" + "id_direccion=" + id_direccion + ", direccion=" + direccion + ", localidad=" + localidad + ", provincia=" + provincia + ", pais=" + pais + ", empleado=" + empleado.getCodigo() + '}';
     }
+
+  
 
 }
