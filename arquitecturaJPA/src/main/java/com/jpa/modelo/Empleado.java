@@ -2,10 +2,12 @@ package com.jpa.modelo;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 
 @Entity
@@ -20,6 +22,10 @@ public class Empleado implements Serializable{
     @Column
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date fechaNacimiento;
+    
+    @OneToOne(cascade = {CascadeType.ALL})
+    @JoinColumn
+    private Direccion direccion;
 
     public Empleado() {
     }
@@ -63,6 +69,16 @@ public class Empleado implements Serializable{
         this.fechaNacimiento = fechaNacimiento;
     }
 
+    public Direccion getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(Direccion direccion) {
+        this.direccion = direccion;
+    }
+
+    
+    
     @Override
     public int hashCode() {
         int hash = 7;
@@ -90,7 +106,8 @@ public class Empleado implements Serializable{
 
     @Override
     public String toString() {
-        return "Empleado{" + "codigo=" + codigo + ", nombre=" + nombre + ", apellido=" + apellido + ", fechaNacimiento=" + fechaNacimiento + '}';
+        return "Empleado{" + "codigo=" + codigo + ", nombre=" + nombre + ", apellido=" + apellido + ", fechaNacimiento=" + fechaNacimiento + ", direccion=" + direccion + '}';
     }
+
 
 }
