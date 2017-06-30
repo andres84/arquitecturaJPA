@@ -10,8 +10,7 @@
     <persistence-unit name="conexion">
             
         <class>com.jpa.modelo</class>
-        <class>com.jpa.modelo.Autor</class>
-        <class>com.jpa.modelo.Libro</class>
+        
 		
         <properties>
             <property name="javax.persistence.jdbc.driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />

@@ -3,6 +3,7 @@ package com.jpa.modelo;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -19,12 +20,26 @@ public class Alumno implements Serializable{
     private String apellidos;
     @Column
     private int edad;
-    @OneToMany(mappedBy = "alumno")
+    @OneToMany(mappedBy = "alumno", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, orphanRemoval = true)
     private List<Curso> cursos = new ArrayList<>();
 
     public Alumno() {
     }
 
+   
+    public void add(Curso c){
+        
+        cursos.add(c);
+        c.setAlumno(this);
+    }
+    
+    
+    public void remover(Curso c){
+        
+        cursos.remove(c);
+        c.setAlumno(null);
+    }
+    
     public Alumno(int dni, String nombre, String apellidos, int edad) {
         this.dni = dni;
         this.nombre = nombre;

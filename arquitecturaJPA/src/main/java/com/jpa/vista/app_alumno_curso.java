@@ -31,6 +31,8 @@ public class app_alumno_curso {
         
         em.getTransaction().commit();
         
+        System.out.println("Exito!!!");
+        
         em.close();
         
     }
